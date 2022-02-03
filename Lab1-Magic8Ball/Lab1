@@ -1,1 +1,26 @@
+"""
+Lab1 Fortune Teller
+Zoe Carlson
+"""
+import random as rn
+import time as tm
+import sys
+
+ans = True
+
+qu = str(input("What is your question: "))
+#user types a question
+print("thinking...")
+tm.sleep(2)
+print("Your question was", qu)
+tm.sleep(1)
+ans = rn.randint(1,3)
+if qu == "":
+    sys.exit()
+elif ans == 1:
+    print("yes")
+elif ans == 2:
+    print("no")
+elif ans == 3:
+    print("It is uncertian at this time")
 
