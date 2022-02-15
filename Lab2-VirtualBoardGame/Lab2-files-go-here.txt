@@ -1,0 +1,84 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jan 24 23:09:15 2022
+
+@author: Zoe Carlson
+lab 2 - game
+"""
+
+import random
+ 
+numofSpaces = 100
+numofSpecialSpaces = 30     # % of spaces that won't be 0
+maxDisplacement = 15        #max a special space can move you forward/back
+spaces = [0] * numofSpaces  #create list numofSpaces long
+specialSpaces = [None] * numofSpecialSpaces
+gameRunning = True
+p1 = 0  #both players start at 1 (index of 0)
+p2 = 0
+turns = 1
+ 
+for space in range(numofSpecialSpaces):         #setting which random spaces are special
+    exists = True                               #if space already is marked as special
+    while(exists):
+        exists = False                          #set false inside loop loop is escapable
+        r = random.randint(0, numofSpaces - 1)  #pick random space (index)
+        for spac in range(numofSpecialSpaces):  #iterate list to check for dupes
+            if specialSpaces[spac] == r:                   #if space is taken already
+                exists = True
+    specialSpaces[space] = r
+ 
+for space in specialSpaces: #make spaces special based on list
+    validSpace = False
+    magnitude = 0
+    while not validSpace:#check for if space will cause player to go below 0 index
+        validSpace = True
+        magnitude = random.randint(maxDisplacement - (maxDisplacement * 2), maxDisplacement)    #between neg max and pos
+        if space + magnitude < 0:#if space - magnitude < 0
+            validSpace = False
+    spaces[space] = magnitude
+specialSpaces = None    #allow for garbage collection
+ 
+print("Welcome to Python Chute and Ladders!\nThe game begins!\n")
+while gameRunning:#do turns while game is still going
+    print("Turn",turns)
+    p1Roll = random.randint(1,6)
+    p1+=p1Roll
+    print("Player 1 rolls a", p1Roll)
+    if p1 <= numofSpaces - 1:
+        if spaces[p1] < 0:
+            print("Player one goes down a chute at "+str(p1)+"!\nPlayer one slides back to space "+str(p1+spaces[p1])+"!\n")
+            p1 += spaces[p1]
+        elif spaces[p1] > 0:
+            print("Player one goes up a ladder at "+str(p1)+"!\nPlayer one climbs to space ",str(p1+spaces[p1])+"!\n")
+            p1 += spaces[p1]
+        else:
+            print("Player one advances to space "+str(p1 + 1)+"\n")
+    else:
+        print("Player one advances to space "+str(p1 + 1)+"\n")
+        
+    if p1 >= numofSpaces - 1:
+        print("Player one wins!!!")
+        gameRunning = False
+        break
+    
+    p2Roll = random.randint(1,6)
+    p2+=p2Roll
+    print("Player 2 rolls a", p2Roll)
+    if p2 <= numofSpaces - 1:
+        if spaces[p2] < 0:
+            print("Player two goes down a chute at "+str(p2)+"!\nPlayer two slides back to space ",str(p2+spaces[p2])+"!\n\n")
+            p2 += spaces[p2]
+        elif spaces[p2] > 0:
+            print("Player two goes up a ladder at "+str(p2)+"!\nPlayer two climbs to space",str(p2+spaces[p2])+"!\n\n")
+            p2 += spaces[p2]
+        else:
+            print("Player two advances to space "+str(p2 + 1)+"\n\n")
+    else:
+        print("Player two advances to space "+str(p2 + 1)+"\n")
+        
+    if p2 >= numofSpaces - 1:
+        print("Player two wins!!!")
+        gameRunning = False
+        break
+    turns+=1
