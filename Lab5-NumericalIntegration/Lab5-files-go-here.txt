@@ -1,4 +1,4 @@
-"Zoe Carlson Lab 4"
+"Zoe Carlson Lab 5"
 
 import matplotlib.pyplot as plt
 import math
