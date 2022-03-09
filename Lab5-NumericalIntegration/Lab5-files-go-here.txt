@@ -1,0 +1,51 @@
+"Zoe Carlson Lab 4"
+
+import matplotlib.pyplot as plt
+import math
+#line
+def interL(width):
+    area = 0
+    starting = -8 + (.8*width) 
+    while starting < 8:
+        area = area + (width * ((-0.8 * starting) + 4.0))  #equation for area
+        starting = starting + width
+    return area
+
+def interP(width):
+    area = 0
+    starting = -8 + (.8*width) 
+    while starting < 8:
+        area = area + (width * (-0.3*(starting**2) - starting + 10.5))
+        starting = starting + width
+    return area
+
+def interCF(width):
+    area = 0
+    starting = -8 + (.8*width) 
+    while starting < 8:
+        area = area + (width * (2.0 + 15*(starting + 2.0)*math.exp(-(starting**2))))
+        starting = starting + width
+    return area
+
+
+#randomnumbers
+xval = [.001258, .0025, .0045, .0125, .025, .045, .125, .24, .45, 1] 
+yline = []
+yparab = []
+ycomp = []
+
+for x in xval:
+    yline.append(round(abs(100-(100*interL(x)/42.0)), 4))
+    yparab.append(round(abs(100-(100*interP(x)/100.83)), 4))
+    ycomp.append(round(abs(100-(100*interCF(x)/27.72)), 4))
+
+plt.figure()
+plt.xlabel(r"$Delta X$")
+plt.ylabel(r"$Percent Difference$")
+plt.xlim(0, 2)
+plt.plot(xval, yline)
+plt.show()
+plt.plot(xval, yparab)
+plt.show()
+plt.plot(xval, ycomp)
+plt.show()
