@@ -1,0 +1,43 @@
+"Zoe Carlson Lab 4"
+import math
+import random as rand
+
+
+def arch(gravity, drag, tstep, height, angel, mag):
+    t = 0
+    xpos = 0
+
+    gravCons = gravity
+    dragcoef = drag
+    sizetstep = tstep
+    ypos = height
+    initang = angel
+    initmag = mag
+
+    xvel = initmag * math.cos(math.radians(initang))
+    yvel = initmag * math.sin(math.radians(initang))
+    xaccel = 0
+    yaccel = -gravCons
+
+    while ypos > 0:
+        xpos = xpos + (xvel * sizetstep)
+        ypos = ypos + (yvel * sizetstep)
+        xvel = xvel + (xaccel * sizetstep)
+        yvel = yvel + (yaccel * sizetstep)
+        xaccel = -dragcoef * xvel
+        yaccel = -gravCons + (-dragcoef * yvel)
+        t = t + sizetstep
+    return xpos
+
+targetxpos = rand.randint(1, 100) 
+print("Target is at " + str(targetxpos) + " m")
+target = .8
+nott = []
+initvel = 20
+nott.append(abs(arch(9.81, 0, .00008, 4, 58, initvel) - float(targetxpos)))
+print("they shot with " + str() + " meters per second initial speed and " + str() + " degrees in initial angel and were " + str(round(nott[-1], 1)) + " meters away  from the target")
+while nott[-1] > target:    #random
+    initvel = abs(initvel + (rand.randint(-100, 100)/100)) 
+    nott.append(abs(arch(9.81, 0, .00001, 1, 45, initvel) - float(targetxpos)))
+    print("they shot with " + str(initvel) + " meters per second initial speed and " + str(45) + " degrees initial angle and was " + str(round(nott[-1], 2)) + " meters from a target")
+print("they hit the target of " + str(targetxpos) + " meters with " + str(len(nott)) + " attempts")
