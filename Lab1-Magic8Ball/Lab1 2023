@@ -1,0 +1,20 @@
+#thursday, january 26
+#Zoe Carlson (empacher) 
+
+from random import randint
+from time import sleep
+
+print("please enter your question")
+x =input()
+print("you asked: " + x)
+sleep(.4)
+print("my answer is")
+sleep(1) 
+print(".")
+sleep(1)   #using three dots to make it seem like its loading or thinking, making it more suspenseful
+print(".")
+sleep(1)
+print(".")
+sleep(1)
+words = ("yes", "no", "maybe", "be patient", "not right now", "definetly", "most likely", "very doubtful")
+random.choice(words)
