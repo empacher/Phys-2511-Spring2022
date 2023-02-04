@@ -1,0 +1,163 @@
+#Zoe Carlson 
+
+from random import randint #to make the dice roll random
+from time import sleep #to make the speach more spaced out
+from colorama import Fore #to make the output less boring
+
+print(Fore.RED + "w", end="")
+print(Fore.YELLOW + "e", end="")
+print(Fore.GREEN + "l", end="")
+print(Fore.CYAN + "c", end="")
+print(Fore.BLUE + "o", end="")
+print(Fore.MAGENTA + "m", end="") 
+print(Fore.RED + "e ",end="")
+print(Fore.YELLOW + "t", end="")
+print(Fore.GREEN + "o ", end="")
+print(Fore.CYAN + "z", end="") 
+print(Fore.BLUE +"o" , end="")
+print(Fore.MAGENTA + "e" , end="")
+print(Fore.WHITE + "'", end="")
+print(Fore.RED + "s ", end="")
+print(Fore.YELLOW + "b" , end="")
+print(Fore.RED + "o", end="")
+print(Fore.YELLOW + "a", end="")
+print(Fore.GREEN + "r", end="")
+print(Fore.CYAN + "d", end="")
+print(Fore.BLUE + "g", end="")
+print(Fore.MAGENTA + "a", end="") 
+print(Fore.RED + "m",end="")
+print(Fore.YELLOW + "e", end="")
+print(Fore.GREEN + "!", end="")
+print(Fore.CYAN + "!", end="") 
+print(Fore.BLUE +"!" , end="")
+print(Fore.MAGENTA + "!")
+
+p1 = 1 #both players start at 1
+p2 = 1 #this is the players position
+
+print(Fore.RED + "player 1", end="")
+print(Fore.WHITE + " will start... ")
+sleep(.4)
+print(Fore.WHITE + "roll the dice to start!")
+
+
+while p1 < 50 and p2 <50:
+    
+    p1roll = randint(2,12) #random dice roll two dice
+    p2roll = randint(2,12) 
+
+
+    print(Fore.RED + "player 1", end="")
+    print(Fore.MAGENTA + " rolls", p1roll)
+    print(Fore.RED + "player 1", end="")
+    print(Fore.WHITE + " moves", p1roll, "spaces")
+    p1 = p1+p1roll #add the roll to the players position
+    print(Fore.RED + "player 1", end="")
+    print(Fore.WHITE + " landed on space number", p1)
+
+    specialup3 = [4,18,27,43] #if you land on any of the spaces in this list you move 
+    specialup7 = [9,23,32]
+    specialdown6 = [8,28,39]
+    specialdown2 = [15,21,33,48]
+    if p1 in specialup3: 
+        p1 = p1 + 3
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " will move up 3")
+        print(Fore.RED + "player 1", end="") 
+        print(Fore.WHITE + " is now on space number ", p1)
+
+    if p1 in specialup7:
+        p1= p1 + 7
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " will move up 7!!")
+        print(Fore.RED + "player 1", end="") 
+        print(Fore.WHITE + " is now on space number ", p1)
+
+    if p1 in specialdown6:
+        p1 = p1 - 6
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " will move down 6 :(")
+        print(Fore.RED + "player 1", end="") 
+        print(Fore.WHITE + " is now on space number ", p1)
+
+    if p1 in specialdown2:
+        p1 = p1 - 2
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.RED + "player 1", end="")
+        print(Fore.WHITE + " will move down 2")
+        print(Fore.RED + "player 1", end="") 
+        print(Fore.WHITE + " is now on space number ", p1)
+
+        
+    print(Fore.BLUE + "player 2",end="") 
+    print(Fore.MAGENTA + " rolls", p2roll)
+    print(Fore.BLUE + "player 2",end="") 
+    print(Fore.WHITE +" moves", p2roll, "spaces")
+    p2 = p2+p2roll 
+    print(Fore.BLUE + "player 2",end="") 
+    print(Fore.WHITE + " landed on space number", p2)
+    
+    specialup3 = [4,18,27,43]
+    specialup7 = [9,23,32]
+    specialdown6 = [8,28,39]
+    specialdown2 = [15,21,33,48]
+    if p2 in specialup3: 
+        p2 = p2 + 3
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " will move up 3")
+        print(Fore.BLUE + "player 2", end="") 
+        print(Fore.WHITE + " is now on space number ", p2)
+            
+    if p2 in specialup7:
+        p2 = p2 + 7
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " will move up 7!!")
+        print(Fore.BLUE + "player 2", end="") 
+        print(Fore.WHITE + " is now on space number ", p2)
+
+    if p2 in specialdown6:
+        p2 = p2 - 6
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " will move down 7 :(")
+        print(Fore.BLUE + "player 2", end="") 
+        print(Fore.WHITE + " is now on space number ", p2)
+
+    if p2 in specialdown2:
+        p2 = p2 - 2
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " landed on a", end="") 
+        print(Fore.YELLOW + " special space!")
+        print(Fore.BLUE + "player 2", end="")
+        print(Fore.WHITE + " will move down 2")
+        print(Fore.BLUE + "player 2", end="") 
+        print(Fore.WHITE + " is now on space number ", p2)
+            
+            
+    if p1 > 50 or p2 >50:
+        break
+        
+if p1 > 50:
+    print(Fore.RED + "player 1 won!")
+    
+if p2 > 50:
+    print(Fore.BLUE + "player 2 won!")
