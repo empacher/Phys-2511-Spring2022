@@ -1,0 +1,60 @@
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+
+my_file = open("frank.txt", "r", encoding = "UTF-8")
+for line in my_file:
+    read_data = my_file.read()
+    split_file = read_data.split("Chapter ")
+    
+    for chapter in split_file[25:]:
+        
+        ovi = chapter.count("Victor")
+        ocr = chapter.count("creature")
+        oag = chapter.count("Agatha")
+        oca = chapter.count("Caroline")
+        ode = chapter.count("De Lacey")
+        oel = chapter.count("Elizabeth")
+        oer = chapter.count("Ernest")
+        ofe = chapter.count("Felix")
+        ohe = chapter.count("Henry")
+        oju = chapter.count("Justine")
+        owi = chapter.count("William")
+        
+        print(chapter[:2])
+        
+        print("Victor occurs", ovi, "times")
+        print("creature occurs", ocr, "times")
+        print("Agatha occurs", oag, "times")
+        print("Caroline occurs", oca, "times")
+        print("De Lacey occurs", ode, "times")
+        print("Elizabeth occurs", oel, "times")
+        print("Ernest occurs", oer, "times")
+        print("Felix occurs", ofe, "times")
+        print("Henry occurs", ohe, "times")
+        print("Justine occurs", oju, "times")
+        print("William occurs", owi, "times")
+
+        plt.style.use('_mpl-gallery')
+        
+        data = {'Victor':ovi, 'creature': ocr, 'Agatha': oag,'Caroline': oca, 'De Lacey': ode, 'Elizabeth': oel, 'Ernest': oer, 'Felix': ofe, 'Henry': ohe, 'Justine': oju, 'William': owi}
+        names = list(data.keys())
+        chapters = list(data.values())
+        
+        fig = plt.figure(figsize =(8, 4))
+        
+        plt.bar(names, chapters, width = 0.5)
+        
+        plt.title("Character Count/Chapter")
+        plt.xlabel("Character name")
+        plt.ylabel("Number of Occurances")
+        
+        plt.show()
+       
+my_file.close()
+
+print("I think that Elizabeth is definetly a main character. I think that she does not like either the creature or Felix because she shows up less in chapters where they are more common.")
+print("I think that Agatha is a very side character that could possibly get killed off in chapter 18.")
+print("I think that Henry's character is related to Elizabeth in some way because his name only shows up when hers does")
+print("I think that Caoline is a very minescule character based off how little she shows up.")
+print("I think Agatha may discover the creature and then be possibly killed by it because she is only present when the creature is")
+print("I think that Justine and William are related in some way because they only ever show up together")
