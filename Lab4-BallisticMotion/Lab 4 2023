@@ -1,0 +1,75 @@
+import numpy as np
+import random as rand
+import math
+from random import choice #to exclude numbers from angle
+
+targetpos = 17 #the target is 17 meters away
+t = 0 #start time is 0
+Xpos = 0 #starting where the archer is
+Ypos = 1.5 #starting 1.5 meters off the ground where the archer is
+outbound = 17.5 #upper limikt of the target
+inbound = 16.5 #lower limit of the target
+
+intmag = rand.randint(60,70) #initial angle and magnitude are random
+
+exclude_this = [45]
+intang = choice(list(set(range(10, 70)) - set(exclude_this)))
+
+#intang = rand.randint(1,44) or rand.randint(46,80)
+g = -9.8 #gravitational constant
+timestep = .05 #the change in time is half a second stands for delta t in projectile motion equation
+
+Xvel = intmag * math.cos(math.radians(intang)) #X component of velocity is magnitude times cosine angle
+Yvel = intmag * math.sin(math.radians(intang)) #Y component of velocity is magnitude times sine angle
+
+if Xpos < inbound or Xpos > outbound: 
+
+    if Ypos > 0: #if the arrow is in the air 
+        Xpos = Xpos + Xvel*t #x xomponent of positoin 
+        Ypos = Ypos + Yvel*t 
+        Xvel = Xvel + t
+        Yvel = Yvel + g*t
+        Yacc = g * Yvel
+        t = t + timestep
+
+        off = targetpos - Xpos  #amount off is the target position - the x position of where the arrow landed
+        
+        while Xpos < inbound: #if the x position of the shot arrow is less than 16.5
+            print("the x position is", f"{Xpos:.3}") #to round the number to the closest sigfig so there isnt a bajillion numbers
+            print("x position fell too short")
+            off = targetpos - Xpos 
+            print("the x position is ", f"{off:.3}", "meters off")
+            intmag = intmag + 0.05 #add 0.25 to the magnitude and angle 
+            
+            if intang >= 46: #if the angle is above 45 and the arrow was overshot, decreasing the angle will make the arrow go further, and vice versa
+                intang = intang - 0.05
+            if intang <= 44:
+                intang = intang + 0.05
+            print("adjusted to shoot further")
+
+            Xvel = intmag * math.cos(math.radians(intang)) #do the x velocity and y velocity calculations again with the new numbers
+            Yvel = intmag * math.sin(math.radians(intang))
+
+            Xpos = Xpos + Xvel*t 
+
+        while Xpos > outbound: #if the x position of the landed arrow is greater than 17.5
+            print("the x position is", f"{Xpos:.3}")
+            print("the arrow was overshot")
+            off = targetpos - Xpos 
+            print("the x position is ", f"{off:.3}", "meters off")
+            intmag = intmag - 0.05#subtract 0.25 from the magnitude and angle
+            if intang >= 44:
+                intang = intang + 0.05
+            if intang <= 46:
+                intang = intang - 0.05
+            print("adjusted to shoot closer")
+
+            Xvel = intmag * math.cos(math.radians(intang)) #do the x velocity and y velocity calculations again with the new numbers
+            Yvel = intmag * math.sin(math.radians(intang))
+
+            Xpos = Xpos + Xvel*t 
+
+if Xpos > inbound and Xpos < outbound:  #if x pos greater than 16.5 and  less than 17.5
+    print("the x position of the arrow is", f"{Xpos:.3}", "meters")
+    print("congrats! the arrow has hit the target!")
+    print("the arrow hit the target with an initial speed of ", f"{intmag:.3}", "m/s and an initial angle of ", f"{intang:.3}", "degrees")
